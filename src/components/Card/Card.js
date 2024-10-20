@@ -8,7 +8,7 @@ const Card = ({id, title, price, imageUrl, onPlus, onFavorite, favorited = false
   const {isItemAdded} = React.useContext(AppContext)
 
   const onClickPlus = () => {
-    onPlus({id, parentId: id, title, price, imageUrl})
+    onPlus({id, title, price, imageUrl})
   }
   const onClickFavorite = () => {
     onFavorite({id, title, price, imageUrl})
@@ -42,7 +42,7 @@ const Card = ({id, title, price, imageUrl, onPlus, onFavorite, favorited = false
                   <span>Цена</span>
                   <b>{price} руб.</b>
                 </div>
-                  <img onClick={onClickPlus} src={isItemAdded(id) ? "img/btn-checked.svg" : "img/btn-plus.svg"} alt="add" />
+                  <img onClick={onClickPlus} src={isItemAdded(title) ? "img/btn-checked.svg" : "img/btn-plus.svg"} alt="add" />
               </div>
           </>}
         </div>

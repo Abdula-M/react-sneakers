@@ -12,8 +12,7 @@ const Orders = ({items, onAddtoFavorite, onAddtoCart}) => {
     React.useEffect(() => {
       try {
         ( async () => {
-          const {data} =  await axios.get("https://66e427f3d2405277ed1350a3.mockapi.io/orders")
-          //  let arr = data.map(item => item.items).flat()
+          const {data} =  await axios.get("https://7875d083888841e4.mokky.dev/orders")
           let arr = data.reduce((prev, obj) => [...prev, ...obj.items], [])
           setOrders(arr)
           setIsLoading(false)

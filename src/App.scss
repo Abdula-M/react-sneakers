@@ -1,0 +1,34 @@
+.slider  {
+    margin-bottom: 45px;
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+    position: relative;
+
+    &_btn {
+        position: absolute;
+        width: 177.46px;
+        height: 47.09px;
+        border-radius: 110px;
+        border: 1px solid rgb(165, 211, 100);
+        background-color: rgb(165, 211, 100);
+        top: 201px;
+        left: 60px;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 19px;
+        letter-spacing: 0%;
+        text-align: center;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: white;
+    }
+}
+
+.slider_btn:hover { 
+    background-color: rgb(165, 211, 100, 0.8);
+}
+.slider_btn:active {
+    background: darken(#9dd558, 5%)
+}

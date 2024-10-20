@@ -15,7 +15,12 @@ const Home = ({items, cartItems, searchValue, setSearchValue, onAddtoCart, onAdd
     )
     }
     return (
+      
         <div>
+          <div className='slider'>
+            <img src="img/Group.png" alt="" />
+            <button className='slider_btn'>Купить</button>
+          </div>
             <div className='mb-10 d-flex align-center justify-between'>
           <h1>{searchValue ? `Поиск по: ${searchValue}` : 'Все кроссовки'}</h1>
           <div className="search-block d-flex align-center">

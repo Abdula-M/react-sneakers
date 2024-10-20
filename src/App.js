@@ -20,9 +20,9 @@ function App() {
 
   React.useEffect(() => {
     async function fetchData() {
-      const cartResponse = await axios.get("https://66e20782c831c8811b570051.mockapi.io/cart")
-      const favoritesResponse = await axios.get("https://66e427f3d2405277ed1350a3.mockapi.io/favorites")
-      const itemsResponse = await axios.get("https://66e20782c831c8811b570051.mockapi.io/items")
+      const cartResponse = await axios.get("https://7875d083888841e4.mokky.dev/cart")
+      const favoritesResponse = await axios.get("https://7875d083888841e4.mokky.dev/favorites")
+      const itemsResponse = await axios.get("https://7875d083888841e4.mokky.dev/items")
 
       setIsLoading(false)
 
@@ -35,13 +35,14 @@ function App() {
 
 
   const onAddtoCart = async (obj) => {
+    console.log(obj)
     try {
-        const findItem =  cartItems.find(item => Number(item.id) === Number(obj.id))
+        const findItem = cartItems.some(item => Number(item.id) === Number(obj.id) + 1) 
       if (findItem) {
-        setCartItems((prev) => prev.filter(item => Number(item.id) !== Number(obj.id)))
-        axios.delete(`https://66e20782c831c8811b570051.mockapi.io/cart/${obj.id}`)
+        setCartItems((prev) => prev.filter(item => Number(item.id) !== Number(obj.id) + 1))
+        await axios.delete(`https://7875d083888841e4.mokky.dev/cart/${Number(obj.id) + 1}`)
       } else {
-        const {data} = await axios.post("https://66e20782c831c8811b570051.mockapi.io/cart", obj)
+        const {data} = await axios.post("https://7875d083888841e4.mokky.dev/cart", obj)
         setCartItems(prev => [...prev, data])
       }
     } catch (error) {
@@ -49,12 +50,13 @@ function App() {
     }
   }
   const onAddtoFavorite = async (obj) => {
+    console.log(obj)
     try {
-      if (favorites.find(item => item.id === obj.id)) {
-        axios.delete(`https://66e427f3d2405277ed1350a3.mockapi.io/favorites/${obj.id}`)
-        setFavorites(prev => prev.filter(item => item.id !== obj.id))
+      if (favorites.find(item => Number(item.id) === Number(obj.id) + 1)) {
+        await axios.delete(`https://7875d083888841e4.mokky.dev/favorites/${Number(obj.id) + 1}`)
+        setFavorites(prev => prev.filter(item => Number(item.id) === Number(obj.id)))
       } else{
-        const {data} = await axios.post("https://66e427f3d2405277ed1350a3.mockapi.io/favorites", obj)
+        const {data} = await axios.post("https://7875d083888841e4.mokky.dev/favorites", obj)
         console.log(data)
         setFavorites(prev => [...prev, data])
       }
@@ -64,9 +66,10 @@ function App() {
   }
 
   const onDeletetoCart = (id) => {
-    const findItem =  cartItems.find(item => Number(item.id) === Number(id))
+    // const findItem =  cartItems.find(item => Number(item.id) === Number(id))
+    // console.log(findItem)
     setCartItems(prev => prev.filter(item => item.id !== id))
-    axios.delete(`https://66e20782c831c8811b570051.mockapi.io/cart/${findItem.id}`)
+    axios.delete(`https://7875d083888841e4.mokky.dev/cart/${id}`)
 
   }
   
@@ -74,8 +77,8 @@ function App() {
     setSearchValue(event.target.value)
   }
 
-  const isItemAdded = (id) => {
-    return cartItems.some((obj) => obj.parentId === id)
+  const isItemAdded = (title) => {
+    return cartItems.some((obj) => obj.title === title)
   }
 
   return (

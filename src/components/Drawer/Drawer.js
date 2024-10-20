@@ -21,13 +21,13 @@ const Drawer = ({onClose, onDelete, items = [], setCartItems}) => {
     const onClickOrder = async () => {
         try {
             setIsLoading(true)
-            const {data} = await axios.post("https://66e427f3d2405277ed1350a3.mockapi.io/orders", {items: cartItems})            
+            const {data} = await axios.post("https://7875d083888841e4.mokky.dev/orders", {items: cartItems})            
             setOrderId(data.id)
             setIsOrderComplete(true)
             setCartItems([])
             for (let i = 0; i < cartItems.length; i++) {
                 const item = cartItems[i]
-                await axios.delete(`https://66e20782c831c8811b570051.mockapi.io/cart/${item.id}`)
+                await axios.delete(`https://7875d083888841e4.mokky.dev/cart/${item.id}`)
                 await delay(1000)
             }
         } catch (error) {
@@ -51,7 +51,7 @@ const Drawer = ({onClose, onDelete, items = [], setCartItems}) => {
                                 <p className="mb-5">{item.title}</p>
                                 <b>{item.price} руб.</b>
                                 </div>
-                                <img onClick={() => onDelete(item.parentId)} className='removeBtn' src="img/btn-remove.svg" alt="" />
+                                <img onClick={() => onDelete(item.id)} className='removeBtn' src="img/btn-remove.svg" alt="" />
                             </div>
                         ))}
                     </div>
